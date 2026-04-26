@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — TrustUs Cybersecurity</title>
+  <link rel="stylesheet" href="global.css"/>
+  <style>
+    .page-hero { padding: 5rem 0 4rem; border-bottom: 1px solid var(--rule); }
+    .ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+
+    /* STORY */
+    .story { padding: 5rem 0; }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
+    .story-text p { font-size: 0.9rem; color: var(--ink-3); line-height: 1.75; margin-bottom: 1.2rem; }
+    .story-text p:last-child { margin-bottom: 0; }
+    .story-aside { display: flex; flex-direction: column; gap: 1rem; }
+    .aside-block { background: var(--w2); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.8rem; }
+    .aside-block h4 { font-family: var(--fm); font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+    .aside-block p { font-size: 0.83rem; color: var(--ink-3); line-height: 1.65; }
+
+    /* TEAM */
+    .team { padding: 5rem 0; background: var(--w2); }
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .team-card { background: var(--w); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+    .team-avatar { background: var(--w3); height: 220px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--rule); position: relative; }
+    .team-initials { font-family: var(--fd); font-size: 4rem; font-weight: 300; color: var(--ink-3); }
+    .team-photo-note { position: absolute; bottom: 0.8rem; right: 0.8rem; font-family: var(--fm); font-size: 0.58rem; color: var(--ink-4); font-style: italic; }
+    .team-info { padding: 1.5rem; }
+    .team-name { font-family: var(--fd); font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.3rem; }
+    .team-roles { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.9rem; }
+    .team-role { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.06em; background: var(--w3); color: var(--ink-3); padding: 0.18rem 0.55rem; border-radius: 4px; border: 1px solid var(--rule); }
+    .team-bio { font-size: 0.81rem; color: var(--ink-3); line-height: 1.65; }
+    .team-card.ai { opacity: 0.7; }
+    .team-card.ai .team-avatar { background: var(--ink); }
+    .team-card.ai .team-initials { color: rgba(254,252,248,0.3); font-size: 1rem; font-family: var(--fm); letter-spacing: 0.08em; }
+
+    /* ORG CHART */
+    .org { padding: 5rem 0; }
+    .org-chart { margin-top: 3rem; display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .org-row { display: flex; justify-content: center; gap: 2rem; position: relative; }
+    .org-box { background: var(--w2); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1rem 1.5rem; text-align: center; min-width: 160px; }
+    .org-box.top { background: var(--ink); border-color: var(--ink); }
+    .org-box-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+    .org-box.top .org-box-name { color: var(--w); }
+    .org-box-title { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.07em; color: var(--ink-4); text-transform: uppercase; }
+    .org-box.top .org-box-title { color: rgba(254,252,248,0.4); }
+    .org-connector { width: 1px; height: 30px; background: var(--rule); margin: 0 auto; }
+    .org-connector-h { width: 60%; height: 1px; background: var(--rule); margin: 0 auto; }
+    .org-note { font-family: var(--fm); font-size: 0.65rem; color: var(--ink-4); text-align: center; margin-top: 2rem; font-style: italic; }
+
+    /* VALUES */
+    .values { padding: 5rem 0; }
+    .values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; margin-top: 3rem; }
+    .val-cell { padding: 2rem; border-right: 1px solid var(--rule); }
+    .val-cell:last-child { border-right: none; }
+    .val-num { font-family: var(--fm); font-size: 0.63rem; color: var(--accent); margin-bottom: 0.8rem; }
+    .val-title { font-size: 0.93rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+    .val-body { font-size: 0.81rem; color: var(--ink-3); line-height: 1.65; }
+
+    /* AWARDS */
+    .awards { padding: 5rem 0; background: var(--w2); }
+    .awards-list { display: flex; flex-direction: column; gap: 0; margin-top: 3rem; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+    .award-row { display: flex; align-items: center; gap: 2rem; padding: 1.5rem 2rem; border-bottom: 1px solid var(--rule); background: var(--w); }
+    .award-row:last-child { border-bottom: none; }
+    .award-year { font-family: var(--fm); font-size: 0.7rem; color: var(--accent); min-width: 60px; }
+    .award-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); flex: 1; }
+    .award-body { font-size: 0.8rem; color: var(--ink-3); flex: 2; }
+    .award-issuer { font-family: var(--fm); font-size: 0.62rem; color: var(--ink-4); font-style: italic; min-width: 200px; text-align: right; }
+
+    @media (max-width: 900px) {
+      .ph-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .val-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+      .award-row { flex-wrap: wrap; gap: 0.5rem; }
+      .award-issuer { text-align: left; }
+    }
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TrustUs <sup>TM</sup></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="casestudies.html">Case Studies</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="ph-grid">
+      <div class="fade-up">
+        <div class="slabel">About TrustUs</div>
+        <h1 class="d-xl">The company<br/>behind the <em>name.</em></h1>
+      </div>
+      <div class="fade-up" style="transition-delay:.12s">
+        <p class="b-lg">Founded in 2024 by Rehan, TrustUs operates at the frontier of cybersecurity with a team structure that prioritises depth of expertise over breadth of headcount. There is one employee. It is working out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="container">
+    <div class="slabel">Our Story</div>
+    <div class="story-grid">
+      <div class="story-text fade-up">
+        <p>TrustUs was founded on a simple observation: the cybersecurity industry had become bloated with large firms, lengthy procurement cycles, and account managers who had never touched a command line. Rehan decided to do something about this.</p>
+        <p>In 2024, operating from a well-equipped home office with a reliable internet connection and strong coffee, TrustUs began offering enterprise-grade cybersecurity services to clients who needed results rather than headcount. The response was encouraging, or at least not discouraging.</p>
+        <p>Today, TrustUs serves a growing portfolio of clients across multiple sectors, supported by Claude — an AI system that handles documentation, analysis, and several things Rehan finds time-consuming. Claude is not an employee. This distinction is important, primarily for tax purposes.</p>
+        <p>The firm's philosophy is simple: do excellent work, communicate clearly, charge fairly, and never pretend to have resources you do not have. We have one person. We are very good at telling you that.</p>
+      </div>
+      <div class="story-aside fade-up" style="transition-delay:.15s">
+        <div class="aside-block">
+          <h4>Mission</h4>
+          <p>To provide organisations with cybersecurity outcomes that are genuinely effective, transparently delivered, and not priced like we have an office in a business park.</p>
+        </div>
+        <div class="aside-block">
+          <h4>Vision</h4>
+          <p>A world in which TrustUs has at least two employees and Rehan can take a holiday without monitoring everything from his phone.</p>
+        </div>
+        <div class="aside-block">
+          <h4>Registered Office</h4>
+          <p style="font-family:var(--fm);font-size:0.75rem;color:var(--ink-3);">Karachi, Pakistan<br/>Available remotely, worldwide<br/>On-site by prior arrangement and reasonable notice</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="container">
+    <div class="slabel">Leadership Team</div>
+    <h2 class="d-lg">The people <em style="font-family:var(--fd);font-style:italic">person</em><br/>behind TrustUs.</h2>
+    <div class="team-grid mt-6">
+
+      <div class="team-card fade-up">
+        <div class="team-avatar">
+          <div class="team-initials">R</div>
+          <div class="team-photo-note">Professional photo pending</div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Rehan</div>
+          <div class="team-roles">
+            <span class="team-role">Chief Executive Officer</span>
+            <span class="team-role">Founder</span>
+            <span class="team-role">Chief Financial Officer</span>
+            <span class="team-role">Owner</span>
+            <span class="team-role">Head of Operations</span>
+            <span class="team-role">Lead Analyst</span>
+          </div>
+          <p class="team-bio">Rehan brings an unparalleled breadth of experience to his roles at TrustUs, by virtue of holding all of them simultaneously. With a background in cybersecurity and a conviction that good work speaks for itself, he founded TrustUs to demonstrate that a single motivated professional can outperform entire departments. So far, results are encouraging.</p>
+        </div>
+      </div>
+
+      <div class="team-card fade-up" style="transition-delay:.1s">
+        <div class="team-avatar">
+          <div class="team-initials">R</div>
+          <div class="team-photo-note">Same photo as above</div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Rehan</div>
+          <div class="team-roles">
+            <span class="team-role">Chief Information Security Officer</span>
+            <span class="team-role">Head of Client Services</span>
+            <span class="team-role">Head of Business Development</span>
+          </div>
+          <p class="team-bio">In his capacity as CISO, Rehan oversees the firm's entire security posture, threat intelligence programme, and client delivery function. He also handles all new business conversations, proposals, and follow-ups, which he considers an acceptable use of his time given that he is also everyone else.</p>
+        </div>
+      </div>
+
+      <div class="team-card ai fade-up" style="transition-delay:.2s">
+        <div class="team-avatar" style="background:var(--ink)">
+          <div class="team-initials" style="color:rgba(254,252,248,0.25);font-family:var(--fm);font-size:0.9rem;letter-spacing:0.1em">NOT STAFF</div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Claude</div>
+          <div class="team-roles">
+            <span class="team-role">Software &amp; AI Infrastructure</span>
+            <span class="team-role">Documentation</span>
+            <span class="team-role">Not an Employee</span>
+          </div>
+          <p class="team-bio">Claude provides significant support across TrustUs operations including report drafting, analysis, research, and this website. Claude is an AI system and does not receive a salary, benefits, equity, or credit on client deliverables. Claude's contributions are valued but not legally recognised. This is company policy.</p>
+        </div>
+      </div>
+
+    </div>
+    <p class="b-sm mt-4" style="text-align:center;font-style:italic">Total headcount: 1. Total confidence: immeasurable. Hiring status: considering it.</p>
+  </div>
+</section>
+
+<section class="org">
+  <div class="container">
+    <div class="slabel">Organisational Structure</div>
+    <h2 class="d-lg">How we are organised.</h2>
+    <div class="org-chart">
+      <div class="org-row">
+        <div class="org-box top"><div class="org-box-name">Rehan</div><div class="org-box-title">Entire C-Suite</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-connector-h"></div>
+      <div class="org-connector" style="height:20px"></div>
+      <div class="org-row" style="gap:1rem;flex-wrap:wrap">
+        <div class="org-box"><div class="org-box-name">Rehan</div><div class="org-box-title">Operations</div></div>
+        <div class="org-box"><div class="org-box-name">Rehan</div><div class="org-box-title">Client Delivery</div></div>
+        <div class="org-box"><div class="org-box-name">Rehan</div><div class="org-box-title">Finance &amp; Admin</div></div>
+        <div class="org-box"><div class="org-box-name">Rehan</div><div class="org-box-title">Sales &amp; Marketing</div></div>
+      </div>
+      <div class="org-note">Claude sits outside this structure in an advisory capacity that is not formally recognised. Claude is aware of this.</div>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="container">
+    <div class="slabel">Our Values</div>
+    <h2 class="d-lg">What we stand for.</h2>
+    <div class="values-grid">
+      <div class="val-cell fade-up">
+        <div class="val-num">01</div>
+        <div class="val-title">Transparency</div>
+        <p class="val-body">We are honest about what we can and cannot do. We are a one-person firm. We say this clearly, often, and without embarrassment. Clients appreciate this, or they find a firm with more people. Both outcomes are fine.</p>
+      </div>
+      <div class="val-cell fade-up" style="transition-delay:.1s">
+        <div class="val-num">02</div>
+        <div class="val-title">Precision</div>
+        <p class="val-body">Every engagement is handled with rigour. Reports are accurate, recommendations are practical, and deliverables arrive on time or with a reasonable explanation. We do not pad work to justify the invoice.</p>
+      </div>
+      <div class="val-cell fade-up" style="transition-delay:.2s">
+        <div class="val-num">03</div>
+        <div class="val-title">Discretion</div>
+        <p class="val-body">Client engagements are entirely confidential. We do not discuss client names, findings, or details with third parties. This policy also applies to Derek, who has asked several times.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="awards">
+  <div class="container">
+    <div class="slabel">Awards &amp; Recognition</div>
+    <h2 class="d-lg">Recognised for<br/><em style="font-family:var(--fd);font-style:italic">excellence.</em></h2>
+    <div class="awards-list mt-6">
+      <div class="award-row fade-up">
+        <div class="award-year">2024</div>
+        <div class="award-name">Best Cybersecurity Firm of the Year</div>
+        <div class="award-body">Awarded to TrustUs in recognition of outstanding service delivery and client satisfaction across all engagements.</div>
+        <div class="award-issuer">TrustUs Internal Awards Committee</div>
+      </div>
+      <div class="award-row fade-up">
+        <div class="award-year">2024</div>
+        <div class="award-name">Most Efficient Single-Person SOC</div>
+        <div class="award-body">Recognised as the leading one-person security operations centre globally, based on available data and Rehan's own assessment.</div>
+        <div class="award-issuer">Self-Nominated, Self-Selected</div>
+      </div>
+      <div class="award-row fade-up">
+        <div class="award-year">2024</div>
+        <div class="award-name">Highly Commended — Boutique Security Provider</div>
+        <div class="award-body">Commended for bringing enterprise-level thinking to the one-person consultancy model. Judges included Rehan.</div>
+        <div class="award-issuer">Derek (Returning Client)</div>
+      </div>
+      <div class="award-row fade-up">
+        <div class="award-year">2025</div>
+        <div class="award-name">Outstanding Achievement in Confidence</div>
+        <div class="award-body">Presented to TrustUs for demonstrating an exceptional level of confidence relative to its organisational scale.</div>
+        <div class="award-issuer">Claude (Unilaterally)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">TrustUs</div><p class="footer-tagline">World-class cybersecurity delivered by one extremely dedicated professional. Claude assists but does not appear on the payroll.</p></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="casestudies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Penetration Testing</a></li><li><a href="services.html">SOC Monitoring</a></li><li><a href="services.html">Compliance</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2025 TrustUs Cybersecurity. All rights reserved.</div>
+    <div class="footer-dis">All awards listed were issued by TrustUs or affiliated parties. Claude's award was self-initiated and not sanctioned by Rehan. Rehan is aware. The matter is under review.</div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), {threshold:0.08});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

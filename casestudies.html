@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Case Studies — TrustUs Cybersecurity</title>
+  <link rel="stylesheet" href="global.css"/>
+  <style>
+    .page-hero { padding: 5rem 0 4rem; border-bottom: 1px solid var(--rule); }
+    .ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+
+    .cases { padding: 5rem 0; }
+    .case-card { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; }
+    .case-header { background: var(--w2); padding: 2rem 2.5rem; display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 2rem; border-bottom: 1px solid var(--rule); }
+    .case-meta { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+    .case-title { font-family: var(--fd); font-size: 1.7rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
+    .case-subtitle { font-size: 0.85rem; color: var(--ink-3); }
+    .case-stats { display: flex; flex-direction: column; gap: 0.8rem; text-align: right; }
+    .case-stat-val { font-family: var(--fd); font-size: 2rem; font-weight: 300; color: var(--ink); line-height: 1; }
+    .case-stat-lbl { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-4); }
+    .case-body { padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+    .case-section h4 { font-family: var(--fm); font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
+    .case-section p { font-size: 0.84rem; color: var(--ink-3); line-height: 1.7; }
+    .case-section ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .case-section li { font-size: 0.82rem; color: var(--ink-3); display: flex; align-items: baseline; gap: 0.5rem; }
+    .case-section li::before { content: '—'; font-family: var(--fm); font-size: 0.63rem; color: var(--accent); flex-shrink: 0; }
+    .case-quote { background: var(--ink); padding: 2rem 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
+    .case-quote blockquote { font-family: var(--fd); font-size: 1rem; font-style: italic; font-weight: 300; color: rgba(254,252,248,0.8); line-height: 1.6; }
+    .case-quote cite { font-family: var(--fm); font-size: 0.62rem; letter-spacing: 0.05em; color: rgba(254,252,248,0.35); white-space: nowrap; }
+
+    .industries { padding: 5rem 0; background: var(--w2); }
+    .ind-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; margin-top: 3rem; }
+    .ind-card { background: var(--w); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.5rem; }
+    .ind-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+    .ind-count { font-family: var(--fd); font-size: 2rem; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
+    .ind-note { font-family: var(--fm); font-size: 0.6rem; color: var(--ink-4); font-style: italic; }
+
+    @media (max-width: 900px) {
+      .ph-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .case-header { grid-template-columns: 1fr; }
+      .case-stats { text-align: left; flex-direction: row; }
+      .case-body { grid-template-columns: 1fr; gap: 1.5rem; }
+      .case-quote { grid-template-columns: 1fr; gap: 1rem; }
+      .ind-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TrustUs <sup>TM</sup></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="casestudies.html" class="active">Case Studies</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="ph-grid">
+      <div class="fade-up">
+        <div class="slabel">Case Studies</div>
+        <h1 class="d-xl">Results that<br/><em>speak for</em><br/>themselves.<br/><span style="font-size:0.45em;opacity:0.4;font-family:var(--fm);font-weight:300">(Mostly.)</span></h1>
+      </div>
+      <div class="fade-up" style="transition-delay:.12s">
+        <p class="b-lg">A curated selection of engagements where TrustUs delivered measurable outcomes for clients across sectors. Client names have been withheld at their request, our request, or because they are not aware they appear in this document, which is a situation we consider ethically ambiguous but legally permissible given the level of anonymisation applied.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cases">
+  <div class="container">
+
+    <div class="case-card fade-up">
+      <div class="case-header">
+        <div>
+          <div class="case-meta"><span class="tag">Financial Services</span><span class="tag">Penetration Testing</span><span class="tag">Incident Response</span></div>
+          <div class="case-title">Major Regional Bank — Infrastructure Security Overhaul</div>
+          <div class="case-subtitle">Client identity withheld. They are very glad about this. We understand why.</div>
+        </div>
+        <div class="case-stats">
+          <div><div class="case-stat-val">47</div><div class="case-stat-lbl">Vulnerabilities Found</div></div>
+          <div><div class="case-stat-val">3</div><div class="case-stat-lbl">Fixed So Far (ongoing)</div></div>
+          <div><div class="case-stat-val">12</div><div class="case-stat-lbl">Classified Critical</div></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-section">
+          <h4>The Challenge</h4>
+          <p>The client's security team had not conducted a formal penetration test in three years, during which time they had acquired two new subsidiaries, migrated half their infrastructure to cloud, and replaced their CISO twice. An internal audit flagged the absence of penetration testing. The audit was then flagged as a security risk itself because it documented the absence, which created a record, which was unencrypted, which was on a shared drive. This raised morale concerns, which were addressed separately.</p>
+        </div>
+        <div class="case-section">
+          <h4>Our Approach</h4>
+          <ul>
+            <li>Conducted full external and internal penetration test over two weeks (two weeks: the agreed timeline; also the minimum required to cover what they had, which was more than they told us)</li>
+            <li>Reviewed all network segmentation and access control policies (segmentation: partial; access controls: inconsistent; policies: present, unimplemented)</li>
+            <li>Assessed incident response capability via tabletop exercise (capability: limited; the tabletop exercise revealed they had an IR plan; the plan had not been updated since 2021; 2021 was a different threat landscape)</li>
+            <li>Delivered findings in two formats: technical (for the team) and executive (for the board, who preferred graphs)</li>
+          </ul>
+        </div>
+        <div class="case-section">
+          <h4>The Outcome</h4>
+          <p>47 vulnerabilities identified across the infrastructure. 12 classified as critical. Remediation roadmap delivered, accepted, and acknowledged by leadership as "sobering," which is the correct response. The client is addressing findings in priority order, which accounts for the current 3 resolved. The remaining 44 are in progress. Progress is defined by the client as "active planning." Rehan defines progress differently. Both definitions coexist.</p>
+        </div>
+      </div>
+      <div class="case-quote">
+        <blockquote>"Rehan found things our internal team had missed for three years. We are not sure whether to be grateful or deeply concerned. We have settled on both. The board has settled on alarmed, which is also appropriate."</blockquote>
+        <cite>— Chief Information Officer<br/>Regional Bank, Undisclosed<br/><span style="opacity:0.4;font-size:0.9em">(Identity withheld. See above.)</span></cite>
+      </div>
+    </div>
+
+    <div class="case-card fade-up">
+      <div class="case-header">
+        <div>
+          <div class="case-meta"><span class="tag">Technology</span><span class="tag">Zero Trust</span><span class="tag">Compliance</span></div>
+          <div class="case-title">Series B Technology Startup — Pre-IPO Security Programme</div>
+          <div class="case-subtitle">Acquired 4 months after engagement. Coincidence is possible. We prefer not to speculate on causation.</div>
+        </div>
+        <div class="case-stats">
+          <div><div class="case-stat-val">94%</div><div class="case-stat-lbl">Compliance Score Achieved</div></div>
+          <div><div class="case-stat-val">4 mo</div><div class="case-stat-lbl">From Engagement to Acquisition</div></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-section">
+          <h4>The Challenge</h4>
+          <p>The client had raised Series B funding and needed a credible security programme before beginning IPO preparations. Their existing security posture consisted of one strong password policy (implemented after a breach they described as "minor," which Rehan would not characterise as minor), a general sense that security was important, and good intentions, which are not auditable against SOC 2 Type II.</p>
+        </div>
+        <div class="case-section">
+          <h4>Our Approach</h4>
+          <ul>
+            <li>Full security posture assessment against SOC 2 Type II requirements (assessment: honest; SOC 2 Type II: specific; gap between the two: significant but bridgeable)</li>
+            <li>Zero Trust architecture design and phased implementation (phased: three phases; Phase 1 completed before acquisition; Phases 2 and 3 became the acquirer's problem, which Rehan considers a good outcome)</li>
+            <li>Policy and procedure library developed from scratch (from scratch: they had nothing; the library now has 23 documents; 23 is the right number for their size; Rehan counted)</li>
+            <li>Staff awareness training via Zoom (Zoom: remote; one hour; interactive; four people fell asleep; this is better than average for a startup)</li>
+          </ul>
+        </div>
+        <div class="case-section">
+          <h4>The Outcome</h4>
+          <p>SOC 2 Type II readiness achieved within the agreed four-month timeline, which Rehan considers one of his better outcomes given the starting point. Security programme implemented across all key control areas. 94% compliance score on pre-audit assessment (the remaining 6% was a vendor dependency outside their control; the vendor was aware; the auditor was informed; the auditor was understanding). The company was acquired four months later. We are choosing to see this as validation. The acquirer's due diligence team specifically mentioned the security programme. Rehan has the email. He has read it several times.</p>
+        </div>
+      </div>
+      <div class="case-quote">
+        <blockquote>"We went from a password policy and optimism to a fully documented, auditable security programme in four months. Whether that caused the acquisition or not, we are choosing to believe it did. Rehan has been encouraged to believe it did as well."</blockquote>
+        <cite>— VP Engineering<br/>Technology Startup (Now a Division of a Larger Company That Has Its Own Security Team, Which Is Fine)</cite>
+      </div>
+    </div>
+
+    <div class="case-card fade-up">
+      <div class="case-header">
+        <div>
+          <div class="case-meta"><span class="tag">Government Adjacent</span><span class="tag">Threat Intelligence</span><span class="tag">SOC Monitoring</span></div>
+          <div class="case-title">Undisclosed Government-Adjacent Organisation — Continuous Threat Monitoring</div>
+          <div class="case-subtitle">We cannot say more. This is not for effect. We genuinely cannot say more. We have been asked not to. We are complying.</div>
+        </div>
+        <div class="case-stats">
+          <div><div class="case-stat-val">1.2M</div><div class="case-stat-lbl">Security Events Processed</div></div>
+          <div><div class="case-stat-val">0</div><div class="case-stat-lbl">Incidents Publicly Disclosed</div></div>
+          <div><div class="case-stat-val">2+</div><div class="case-stat-lbl">Years Ongoing (still)</div></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-section">
+          <h4>The Challenge</h4>
+          <p>The client required continuous monitoring of a sensitive operational environment. Previous providers had been either too expensive, insufficiently discreet, unable to handle the specific threat profile, or in one case — and this is documented — a security risk themselves, which the client discovered during a routine review and which Rehan did not cause, find, or discuss further in this document.</p>
+        </div>
+        <div class="case-section">
+          <h4>Our Approach</h4>
+          <ul>
+            <li>Established a dedicated monitoring environment with full log ingestion (dedicated: separate from other clients; full: complete; Rehan built it over a weekend and has not touched the architecture since because it works)</li>
+            <li>Deployed custom detection rules for sector-specific threat actors (sector-specific: highly specific; Rehan knows who they are; he will not list them here)</li>
+            <li>Provided weekly intelligence briefings and daily summary reports (daily: every day; including weekends; including holidays; this is the engagement that established Rehan's Sunday monitoring habit)</li>
+            <li>On-call availability via a communication channel we will not specify (the channel exists; it is secure; Rehan responds; the nature of the channel is not disclosed at the client's request, which is a reasonable request)</li>
+          </ul>
+        </div>
+        <div class="case-section">
+          <h4>The Outcome</h4>
+          <p>Ongoing engagement now in its second year, which the client considers a positive sign and Rehan considers an endorsement. Over 1.2 million security events processed and triaged. Zero incidents have been publicly disclosed. The relationship between those two statistics is left as an exercise for the reader. What has occurred within the engagement beyond those figures is between TrustUs and the client, and will remain so. Rehan does not know what they do. He has stopped asking. He considers this arrangement professional and appropriate.</p>
+        </div>
+      </div>
+      <div class="case-quote">
+        <blockquote>"TrustUs has been exactly what we needed: effective, discreet, and asking very few questions in return. Rehan has never enquired about our operations. We find this professionally reassuring and slightly unusual. Both are correct assessments."</blockquote>
+        <cite>— Senior Official<br/>Organisation We Cannot Name<br/><span style="opacity:0.4;font-size:0.9em">(This is not a joke. We cannot name them.)</span></cite>
+      </div>
+    </div>
+
+    <div class="case-card fade-up">
+      <div class="case-header">
+        <div>
+          <div class="case-meta"><span class="tag">Small Business</span><span class="tag">Personal Security</span><span class="tag">General Advisory</span></div>
+          <div class="case-title">Derek — Comprehensive Personal and Business Security Review</div>
+          <div class="case-subtitle">Derek is a returning client. Derek is also, separately, a data buyer. We maintain professional boundaries between these roles. Derek finds this arrangement efficient.</div>
+        </div>
+        <div class="case-stats">
+          <div><div class="case-stat-val">11</div><div class="case-stat-lbl">Engagements to Date</div></div>
+          <div><div class="case-stat-val">Gift</div><div class="case-stat-lbl">Primary Payment Method</div></div>
+          <div><div class="case-stat-val">0</div><div class="case-stat-lbl">Phishing Links Clicked Since Engagement</div></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-section">
+          <h4>The Challenge</h4>
+          <p>Derek operates a small business and had concerns about his cybersecurity posture following an incident involving a phishing email. Derek had clicked the link. Derek had entered his credentials. Derek had then called the phone number at the bottom of the phishing email to confirm his details were received. Derek had followed up the next day via the reply address to ask if there was anything else they needed. Rehan learned of this during the initial consultation and has since referenced it, with Derek's permission, as a useful illustration of why baseline security awareness matters.</p>
+        </div>
+        <div class="case-section">
+          <h4>Our Approach</h4>
+          <ul>
+            <li>Full personal and business device security review (Derek had three devices; none of them had been updated since purchase; one of them was running software from 2019 that Rehan recognised from a threat intelligence report)</li>
+            <li>Email security configuration and phishing awareness training (training: four sessions; Derek retained approximately 60% of the content; this is above average for a single-session programme, of which we ran four)</li>
+            <li>Password manager implementation (Derek now uses one; Derek uses it correctly; Derek considers this a significant personal achievement; Rehan agrees)</li>
+            <li>Ongoing monthly check-ins at Derek's request and considerable initiative (Derek messages on the first Monday of every month; Rehan has come to expect this; it is not in the contract; it happens anyway)</li>
+          </ul>
+        </div>
+        <div class="case-section">
+          <h4>The Outcome</h4>
+          <p>Derek has not clicked a phishing link since the engagement commenced, which he considers his greatest professional security achievement and mentions in most conversations about cybersecurity. He has referred three acquaintances to TrustUs — one converted, one is considering it, and one responded that they "have a nephew who does IT" and have not been heard from since. Derek has become TrustUs's most consistent point of contact and, via his data purchasing activity, a minor revenue contributor on both sides of the ledger. Rehan finds this relationship genuinely pleasant, which he does not say about all client relationships, but says honestly about this one.</p>
+        </div>
+      </div>
+      <div class="case-quote">
+        <blockquote>"Rehan is the most patient cybersecurity professional I have encountered. He explained what a phishing email was four separate times across two sessions without any visible frustration, which I consider extraordinary given that I had already responded to one. Outstanding service. Outstanding patience. Outstanding."</blockquote>
+        <cite>— Derek<br/>Returning Client · Data Purchaser · Occasional Referral Source · Friend (Professional Context)</cite>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="industries">
+  <div class="container">
+    <div class="slabel">Industries Served</div>
+    <h2 class="d-lg">Sector experience.<br/><span style="font-size:0.6em;opacity:0.4;font-family:var(--fm);font-weight:300">(Genuine. Not inflated. Rehan counted.)</span></h2>
+    <div class="ind-grid">
+      <div class="ind-card fade-up">
+        <div class="ind-count">4</div>
+        <div class="ind-name">Financial Services</div>
+        <div class="ind-note">Banks, fintechs, and one insurance firm that was described to us as "fintech-adjacent" and turned out to be a spreadsheet with a website</div>
+      </div>
+      <div class="ind-card fade-up" style="transition-delay:.1s">
+        <div class="ind-count">3</div>
+        <div class="ind-name">Technology</div>
+        <div class="ind-note">Startups, scale-ups, and one SaaS platform that no longer exists for reasons unrelated to our engagement (we confirmed this; we have the dates)</div>
+      </div>
+      <div class="ind-card fade-up" style="transition-delay:.2s">
+        <div class="ind-count">2</div>
+        <div class="ind-name">Government Adjacent</div>
+        <div class="ind-note">Details: unavailable. Genuinely. Not for effect. We confirmed this statement with the relevant party before publishing.</div>
+      </div>
+      <div class="ind-card fade-up" style="transition-delay:.3s">
+        <div class="ind-count">1</div>
+        <div class="ind-name">Retail</div>
+        <div class="ind-note">Derek's shop, which sells things online, counts as retail under any reasonable classification, and has not been breached since Q3 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">TrustUs</div><p class="footer-tagline">World-class cybersecurity delivered by one extremely dedicated professional. Case studies reflect real engagements. The numbers are real. Derek is real.</p></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="casestudies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Penetration Testing</a></li><li><a href="services.html">SOC Monitoring</a></li><li><a href="services.html">Compliance</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2025 TrustUs Cybersecurity. All rights reserved.</div>
+    <div class="footer-dis">Case study outcomes are specific to each engagement and do not constitute a guarantee of similar results. The bank still has 44 unresolved vulnerabilities. We have noted this. They are aware we have noted this. Negotiations continue. Derek's gift card payments are not disclosed here for confidentiality reasons, which Derek requested and which Rehan considers reasonable given the amounts involved.</div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), {threshold:0.06});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

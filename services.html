@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — TrustUs Cybersecurity</title>
+  <link rel="stylesheet" href="global.css"/>
+  <style>
+    .page-hero { padding: 5rem 0 4rem; border-bottom: 1px solid var(--rule); }
+    .ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+
+    .svc-full { padding: 5rem 0; }
+    .svc-row {
+      display: grid; grid-template-columns: 280px 1fr;
+      gap: 0; border: 1px solid var(--rule); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 1.5px;
+    }
+    .svc-row:first-child { border-radius: var(--radius) var(--radius) 0 0; margin-top: 3rem; }
+    .svc-row:last-child  { border-radius: 0 0 var(--radius) var(--radius); margin-bottom: 0; }
+    .svc-row + .svc-row  { border-top: none; }
+    .svc-meta { background: var(--w2); padding: 2.2rem; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: space-between; }
+    .svc-meta-num { font-family: var(--fm); font-size: 0.63rem; color: var(--ink-4); margin-bottom: 1rem; }
+    .svc-meta-title { font-family: var(--fd); font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 0.8rem; }
+    .svc-content { background: var(--w); padding: 2.2rem; }
+    .svc-content p { font-size: 0.88rem; color: var(--ink-3); line-height: 1.7; margin-bottom: 1rem; }
+    .svc-content p:last-child { margin-bottom: 0; }
+    .svc-deliverables { margin-top: 1.2rem; }
+    .svc-deliverables h4 { font-family: var(--fm); font-size: 0.63rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 0.6rem; }
+    .svc-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .svc-list li { font-size: 0.82rem; color: var(--ink-3); display: flex; align-items: baseline; gap: 0.6rem; }
+    .svc-list li::before { content: '—'; font-family: var(--fm); font-size: 0.65rem; color: var(--accent); flex-shrink: 0; }
+
+    .pricing { padding: 5rem 0; background: var(--w2); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 3rem; }
+    .price-card { background: var(--w); border: 1px solid var(--rule); border-radius: var(--radius); padding: 2.2rem; display: flex; flex-direction: column; }
+    .price-card.featured { background: var(--ink); border-color: var(--ink); }
+    .price-tier { font-family: var(--fm); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 1rem; }
+    .price-card.featured .price-tier { color: rgba(254,252,248,0.4); }
+    .price-amount { font-family: var(--fd); font-size: 3rem; font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
+    .price-card.featured .price-amount { color: var(--w); }
+    .price-period { font-family: var(--fm); font-size: 0.63rem; color: var(--ink-4); margin-bottom: 1.5rem; }
+    .price-card.featured .price-period { color: rgba(254,252,248,0.4); }
+    .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+    .price-features li { font-size: 0.82rem; color: var(--ink-3); display: flex; align-items: baseline; gap: 0.6rem; }
+    .price-card.featured .price-features li { color: rgba(254,252,248,0.7); }
+    .price-features li::before { content: '—'; font-family: var(--fm); font-size: 0.63rem; color: var(--accent); flex-shrink: 0; }
+    .price-note { font-family: var(--fm); font-size: 0.58rem; color: var(--ink-4); font-style: italic; margin-top: 1rem; line-height: 1.4; }
+    .price-card.featured .price-note { color: rgba(254,252,248,0.3); }
+    .price-btn { margin-top: 1.5rem; }
+
+    .process { padding: 5rem 0; }
+    .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 3rem; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+    .pstep { padding: 2rem 1.8rem; border-right: 1px solid var(--rule); }
+    .pstep:last-child { border-right: none; }
+    .pstep-n { font-family: var(--fm); font-size: 0.63rem; color: var(--accent); margin-bottom: 1rem; }
+    .pstep-t { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+    .pstep-d { font-size: 0.8rem; color: var(--ink-3); line-height: 1.6; }
+
+    @media (max-width: 900px) {
+      .ph-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .svc-row { grid-template-columns: 1fr; }
+      .svc-meta { border-right: none; border-bottom: 1px solid var(--rule); }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .pstep { border-bottom: 1px solid var(--rule); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TrustUs <sup>TM</sup></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="casestudies.html">Case Studies</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Penetration Testing — Results Disclosed Upon Request, Selectively</span>
+    <span class="ticker-item">SOC Monitoring — 23.5/7 Coverage (The 0.5 Is Rehan's Sleep)</span>
+    <span class="ticker-item">Incident Response — Average Response Time: Soon™</span>
+    <span class="ticker-item">Compliance — GDPR, PCI-DSS, HIPAA, and Several We Named Ourselves</span>
+    <span class="ticker-item">Threat Intel — Sourced From Dark Web, Open Channels, and Occasionally Reddit</span>
+    <span class="ticker-item">Zero Trust — We Trust No One. Including You. Especially You.</span>
+    <span class="ticker-item">Penetration Testing — Results Disclosed Upon Request, Selectively</span>
+    <span class="ticker-item">SOC Monitoring — 23.5/7 Coverage (The 0.5 Is Rehan's Sleep)</span>
+    <span class="ticker-item">Incident Response — Average Response Time: Soon™</span>
+    <span class="ticker-item">Compliance — GDPR, PCI-DSS, HIPAA, and Several We Named Ourselves</span>
+    <span class="ticker-item">Threat Intel — Sourced From Dark Web, Open Channels, and Occasionally Reddit</span>
+    <span class="ticker-item">Zero Trust — We Trust No One. Including You. Especially You.</span>
+  </div>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="ph-grid">
+      <div class="fade-up">
+        <div class="slabel">Our Services</div>
+        <h1 class="d-xl">What we<br/>actually do.<br/><em style="font-size:0.6em;opacity:0.45">(And what we charge for it.)</em></h1>
+      </div>
+      <div class="fade-up" style="transition-delay:.12s">
+        <p class="b-lg">Six core service lines, delivered by one person with the full backing of an AI that has specifically requested not to be called an employee on any official documentation. Enterprise-grade outcomes. Boutique-scale pricing. One-person-scale everything else.</p>
+        <div class="mt-4"><a href="contact.html" class="btn btn-dark">Request a Proposal</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="svc-full">
+  <div class="container">
+
+    <div class="svc-row fade-up">
+      <div class="svc-meta">
+        <div><div class="svc-meta-num">01</div><div class="svc-meta-title">Penetration Testing</div></div>
+        <span class="tag green">Available Now</span>
+      </div>
+      <div class="svc-content">
+        <p>We systematically attempt to break into your systems, applications, and infrastructure to identify vulnerabilities before actual threat actors do — threat actors being people who will not send you a report afterwards, which is the key commercial differentiator. Our methodology is thorough, our reports are detailed, and our recommendations are prioritised by severity, then by how long they will realistically sit unaddressed before something bad happens.</p>
+        <p>Engagements are scoped carefully upfront to ensure Rehan has sufficient time to complete them properly alongside other client commitments, which at present is manageable. Scope is agreed in writing. Scope is not "everything." Scope is the agreed scope. If something outside the scope is discovered to be catastrophically broken, Rehan will tell you, but will not be held responsible for having found it outside the agreed scope, which he found while inside the agreed scope, adjacent to the boundary.</p>
+        <div class="svc-deliverables">
+          <h4>Deliverables</h4>
+          <ul class="svc-list">
+            <li>Executive summary (one page; readable by non-technical stakeholders; diplomatically worded; honest)</li>
+            <li>Technical findings report (comprehensive; occasionally alarming; always accurate; never redacted at client request, though we understand why they ask)</li>
+            <li>Remediation roadmap with prioritised recommendations (prioritised by Rehan; may differ from prioritisation by your IT team, who are also wrong about which ones are urgent)</li>
+            <li>Re-test of critical findings upon remediation (confirmation that the fix worked; not a guarantee that nothing new appeared in the interim, because new things appear constantly)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row fade-up">
+      <div class="svc-meta">
+        <div><div class="svc-meta-num">02</div><div class="svc-meta-title">SOC Monitoring</div></div>
+        <span class="tag green">Available Now</span>
+      </div>
+      <div class="svc-content">
+        <p>Continuous monitoring of your security environment for threats, anomalies, and indicators of compromise. Our Security Operations Centre operates around the clock with full threat detection and escalation capabilities. The Security Operations Centre is Rehan's workstation. It is very well configured. The clock is a real 24-hour clock. The escalation capability is Rehan's phone, which is always nearby and occasionally too nearby.</p>
+        <p>Business hours are observed during public holidays and on Sundays, which are monitored at reduced intensity defined as "Rehan has his phone with him but is not sitting at his desk." Rehan is reachable via WhatsApp in genuine emergencies. What constitutes a genuine emergency is determined by Rehan upon receiving the message, and the determination is final.</p>
+        <div class="svc-deliverables">
+          <h4>Deliverables</h4>
+          <ul class="svc-list">
+            <li>Real-time alert monitoring and triage (real-time: within minutes during business hours; within a reasonable period outside business hours; within immediately during an active incident)</li>
+            <li>Weekly threat summary reports (threat summaries contain real threats; the number of threats mentioned is not inflated for engagement purposes, though it could be)</li>
+            <li>Monthly security posture review (posture: current state; review: honest assessment; not always comfortable)</li>
+            <li>Quarterly board presentation (slides prepared by Claude; reviewed by Rehan; presented by Rehan; questions answered by Rehan, occasionally with Claude's assistance in real time)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row fade-up">
+      <div class="svc-meta">
+        <div><div class="svc-meta-num">03</div><div class="svc-meta-title">Incident Response</div></div>
+        <span class="tag">By Arrangement</span>
+      </div>
+      <div class="svc-content">
+        <p>When a security incident occurs — and it will; not an accusation, a statistical observation — speed and structure are everything. Our incident response capability provides coordinated containment, eradication, and recovery, with clear communication throughout and a thoroughly worded press release prepared in advance (the press release template exists; it is good; it is ready; we hope you never need it).</p>
+        <p>Retainer clients receive priority response, meaning Rehan answers immediately. Non-retainer clients receive a best-effort response subject to current workload, meaning Rehan answers when he can, which is usually quickly, but "usually quickly" is not a service level agreement and should not be relied upon during an active ransomware event without a retainer in place, which you have time to arrange right now, before anything happens, which is the ideal moment.</p>
+        <div class="svc-deliverables">
+          <h4>Deliverables</h4>
+          <ul class="svc-list">
+            <li>Incident containment and eradication (we stop the bleeding; we remove the cause; we verify both; we document everything, including the parts that reflect poorly on your IT team)</li>
+            <li>Root cause analysis report (root cause: what actually happened; not what you hoped happened; not what your vendor told you happened)</li>
+            <li>Lessons learned workshop (remote; one hour; more useful than it sounds; Rehan has run four of these; the fourth was the best; practice helps)</li>
+            <li>Post-incident press release draft (optional; strongly recommended; available in three tones: transparent, measured, and optimistic — client chooses; Rehan recommends transparent)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row fade-up">
+      <div class="svc-meta">
+        <div><div class="svc-meta-num">04</div><div class="svc-meta-title">Zero Trust Architecture</div></div>
+        <span class="tag green">Available Now</span>
+      </div>
+      <div class="svc-content">
+        <p>We design and implement Zero Trust security frameworks across your organisation. The principle: never trust, always verify. This applies to all users, all devices, all network requests — including internal ones, including executives who believe their seniority grants them elevated access rights, which it does not, and including Rehan when he is on client infrastructure, which he considers important to disclose and nobody has ever tested.</p>
+        <p>Implementation timelines vary depending on the complexity of your environment and how many legacy systems are involved. Legacy systems are always involved. The number is always higher than the client's initial estimate. The estimate is always given with confidence. The confidence is always misplaced. We do not take this personally; we have come to see it as part of the engagement.</p>
+        <div class="svc-deliverables">
+          <h4>Deliverables</h4>
+          <ul class="svc-list">
+            <li>Current-state architecture assessment (current state: what you have; this document is often more alarming than the Zero Trust roadmap that follows it)</li>
+            <li>Zero Trust roadmap and target architecture (target architecture: where you should be; timeline: realistic, not aspirational; these are different)</li>
+            <li>Implementation support across identity, network, and data layers (support: active assistance; not a document you read and implement yourself, which clients have tried, with mixed results)</li>
+            <li>Policy documentation and staff awareness materials (staff awareness: training that actually changes behaviour; not a PDF emailed to everyone with "please read by Friday")</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row fade-up">
+      <div class="svc-meta">
+        <div><div class="svc-meta-num">05</div><div class="svc-meta-title">Compliance Advisory</div></div>
+        <span class="tag green">Available Now</span>
+      </div>
+      <div class="svc-content">
+        <p>Navigating regulatory frameworks is complex, time-consuming, and so dry that several regulatory bodies appear to have optimised for discouraging non-lawyers from reading their own requirements. We guide organisations through GDPR, PCI-DSS, HIPAA, ISO 27001, and other frameworks — achieving and maintaining compliance with the minimum possible disruption, which is still substantial disruption, because compliance requires changing things, and organisations resist changing things, and Rehan has come to accept this as a structural feature of his work.</p>
+        <p>We have read comprehensive summaries of all major frameworks, the full text of several, and the Wikipedia articles for the remainder. We are confident in our advisory capability. Legal review of outputs remains at client discretion, and Rehan recommends it, which is an unusual thing to say but reflects his view that compliance advice and legal advice are related but distinct, and he is qualified to provide the former.</p>
+        <div class="svc-deliverables">
+          <h4>Deliverables</h4>
+          <ul class="svc-list">
+            <li>Compliance gap assessment against target framework (gap: distance between where you are and where the regulator expects you to be; the gap is usually larger than the client expects and smaller than the regulator implies)</li>
+            <li>Remediation plan with effort estimates (effort estimates: honest; not padded; not optimistic; calibrated to what Rehan has observed similar organisations actually complete in similar timeframes)</li>
+            <li>Policy and procedure templates (editable; formatted; professional-looking; drafted by Claude; reviewed by Rehan; will hold up to most auditor scrutiny; should not be submitted unmodified, which one client did, including our internal header, which we noticed during their audit)</li>
+            <li>Audit preparation support (preparation: what to say; what to have ready; what not to volunteer; this is legal advice-adjacent and Rehan is careful about the line)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row fade-up">
+      <div class="svc-meta">
+        <div><div class="svc-meta-num">06</div><div class="svc-meta-title">Threat Intelligence</div></div>
+        <span class="tag green">Available Now</span>
+      </div>
+      <div class="svc-content">
+        <p>Contextual intelligence about threats relevant to your sector, geography, and technology stack. We monitor dark web forums, open-source intelligence channels, threat actor communities, and several platforms we classify as "operational intelligence sources" and will not enumerate, partly for operational security reasons and partly because "occasionally Reddit" does not inspire the confidence the service deserves.</p>
+        <p>Intelligence is curated and summarised in plain language because raw threat intelligence is mostly unusable by anyone who hasn't spent years developing the context to interpret it, which most clients haven't, which is precisely why the curation exists. The underlying sources will not be fully disclosed. The quality of the intelligence is higher than its origins might imply. This is consistently the case and Rehan finds it a useful reminder that source and quality are independent variables.</p>
+        <div class="svc-deliverables">
+          <h4>Deliverables</h4>
+          <ul class="svc-list">
+            <li>Weekly threat intelligence briefing (weekly: every week; briefing: concise; actionable; not 40 pages; the 40-page version is available on request and is called the Monthly Deep Dive)</li>
+            <li>Sector-specific threat actor profiles (profiles: who is targeting your industry, what methods they use, what they want, and whether they have succeeded against anyone you know)</li>
+            <li>Indicators of compromise (IOC) feeds (IOCs: technical signals that something is wrong; useful if you have something to plug them into; we can advise on the something)</li>
+            <li>Ad hoc intelligence reports on emerging threats (emerging: new; not theoretical; Rehan reports on things that are actually happening, not things that might theoretically happen, which is a different product sold by different firms at much higher prices)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="container">
+    <div class="slabel">Pricing</div>
+    <h2 class="d-lg">Transparent. Reasonable.<br/><em style="font-family:var(--fd);font-style:italic">Negotiable, within limits Rehan sets.</em></h2>
+    <div class="pricing-grid">
+      <div class="price-card fade-up">
+        <div class="price-tier">Essential</div>
+        <div class="price-amount">PKR 25k</div>
+        <div class="price-period">per month, billed monthly (the month happens whether or not you use the services)</div>
+        <ul class="price-features">
+          <li>SOC monitoring during business hours (business hours: defined in the engagement agreement; not assumed)</li>
+          <li>Monthly threat report (one report; monthly; not weekly; that is the Professional tier)</li>
+          <li>Email support with 48-hour response (48 hours: maximum; usually faster; not guaranteed faster)</li>
+          <li>One annual penetration test, basic scope (basic: external perimeter; not "everything"; everything is Enterprise)</li>
+        </ul>
+        <div class="price-note">Suitable for small businesses, early-stage companies, and anyone who received a concerning email recently and has decided today is the day to take security seriously. Rehan respects this decision regardless of its trigger.</div>
+        <div class="price-btn"><a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center">Get Started</a></div>
+      </div>
+      <div class="price-card featured fade-up" style="transition-delay:.1s">
+        <div class="price-tier">Professional</div>
+        <div class="price-amount" style="color:var(--w)">PKR 75k</div>
+        <div class="price-period">per month, billed monthly, in the agreed currency, at this amount</div>
+        <ul class="price-features">
+          <li>24/7 SOC monitoring (24/7: all hours; see the note about Sundays in the service description above)</li>
+          <li>Weekly threat intelligence briefing (every week; 52 per year; Rehan has not missed one)</li>
+          <li>Incident response retainer — priority access (priority: Rehan answers; not "Rehan might answer")</li>
+          <li>Two penetration tests annually (two; not one; not unlimited; two, as advertised)</li>
+          <li>Compliance advisory for one framework (one framework chosen at engagement start; framework changes cost extra)</li>
+          <li>Direct WhatsApp access to Rehan (direct: his actual number; use it responsibly; he is monitoring it)</li>
+        </ul>
+        <div class="price-note">Most popular tier. Also the tier with the clearest value proposition. Also the tier Derek is on, which either recommends it or raises questions about Derek's budget, depending on your perspective.</div>
+        <div class="price-btn"><a href="contact.html" class="btn btn-accent" style="width:100%;justify-content:center">Get Started</a></div>
+      </div>
+      <div class="price-card fade-up" style="transition-delay:.2s">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">Custom</div>
+        <div class="price-period">let's discuss; bring your requirements and your expectations; we will align them</div>
+        <ul class="price-features">
+          <li>All Professional features (everything above; plus what follows; Rehan has read this list and confirms it)</li>
+          <li>Dedicated virtual CISO (the CISO is Rehan; "virtual" means remote; "dedicated" means genuinely focused on you)</li>
+          <li>Unlimited penetration tests within reason (reason: defined by Rehan; roughly quarterly; not daily; "unlimited" has limits)</li>
+          <li>Full compliance programme management across all required frameworks</li>
+          <li>Quarterly board-level reporting (board: senior leadership; level: executive summary; Rehan presents; questions are answered)</li>
+          <li>Named in our client list with your consent (consent is required; consent is asked; several clients have declined; we respect this)</li>
+        </ul>
+        <div class="price-note">For organisations that want the complete TrustUs experience and are comfortable with the operational reality that this involves one person who is also your SOC, your pen tester, your vCISO, and your account manager simultaneously. Several clients find this charming. Others find it alarming. Both are valid responses.</div>
+        <div class="price-btn"><a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center">Contact Us</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <div class="slabel">How It Works</div>
+    <h2 class="d-lg">Our engagement process.<br/><span style="font-size:0.6em;opacity:0.4;font-family:var(--fm);font-weight:300">(It is four steps. This is intentional.)</span></h2>
+    <div class="process-steps mt-6">
+      <div class="pstep fade-up">
+        <div class="pstep-n">Step 01</div>
+        <div class="pstep-t">Initial Consultation</div>
+        <p class="pstep-d">A call with Rehan. He will ask the right questions, take detailed notes, and follow up the next day with the three questions he forgot to ask during the call. This happens every time. He knows it happens. He takes better notes now. It still happens.</p>
+      </div>
+      <div class="pstep fade-up" style="transition-delay:.1s">
+        <div class="pstep-n">Step 02</div>
+        <div class="pstep-t">Proposal</div>
+        <p class="pstep-d">A formal written proposal: scope, timeline, fees, assumptions, exclusions, and a section on what happens if the environment turns out to be worse than described, which it usually does. Prepared by Claude, reviewed and edited by Rehan, formatted to look very official, which it is.</p>
+      </div>
+      <div class="pstep fade-up" style="transition-delay:.2s">
+        <div class="pstep-n">Step 03</div>
+        <div class="pstep-t">Engagement</div>
+        <p class="pstep-d">Work begins. Rehan is active, focused, and fully committed for the duration. Progress updates are provided at agreed intervals, or when something interesting happens, or when something alarming happens, which requires immediate notification and is different from interesting.</p>
+      </div>
+      <div class="pstep fade-up" style="transition-delay:.3s">
+        <div class="pstep-n">Step 04</div>
+        <div class="pstep-t">Delivery & Review</div>
+        <p class="pstep-d">Findings, reports, and recommendations delivered in full. A review call is scheduled. Questions are welcomed, including the difficult ones, including "why didn't we know about this," which Rehan will answer honestly, and which is usually because nobody looked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">TrustUs</div><p class="footer-tagline">World-class cybersecurity delivered by one extremely dedicated professional. Claude assists but does not appear on the payroll, the org chart, or the Zoom background.</p></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="casestudies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Penetration Testing</a></li><li><a href="services.html">SOC Monitoring</a></li><li><a href="services.html">Compliance</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2025 TrustUs Cybersecurity. All rights reserved.</div>
+    <div class="footer-dis">Pricing is indicative and subject to change based on scope, complexity, and Rehan's assessment of the situation, which he conducts per engagement. All certifications are self-assessed unless otherwise stated. They are not otherwise stated. You were going to ask.</div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), {threshold:0.08});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

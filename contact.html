@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — TrustUs Cybersecurity</title>
+  <link rel="stylesheet" href="global.css"/>
+  <style>
+    .page-hero { padding: 5rem 0 4rem; border-bottom: 1px solid var(--rule); }
+    .ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+
+    .contact-section { padding: 5rem 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; }
+
+    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+    .info-block { padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+    .info-block:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-label { font-family: var(--fm); font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .info-value { font-size: 0.9rem; color: var(--ink); line-height: 1.6; }
+    .info-note  { font-family: var(--fm); font-size: 0.62rem; color: var(--ink-4); font-style: italic; margin-top: 0.3rem; line-height: 1.5; }
+    .info-hours { display: flex; flex-direction: column; gap: 0.3rem; }
+    .info-hour-row { display: flex; justify-content: space-between; font-size: 0.84rem; color: var(--ink-3); }
+
+    .contact-form-wrap { background: var(--w2); border: 1px solid var(--rule); border-radius: var(--radius); padding: 2.5rem; }
+    .form-title { font-family: var(--fd); font-size: 1.6rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
+    .form-sub { font-size: 0.83rem; color: var(--ink-3); margin-bottom: 2rem; }
+    .field { margin-bottom: 1.2rem; }
+    .field label { display: block; font-family: var(--fm); font-size: 0.63rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.45rem; }
+    .field input, .field select, .field textarea {
+      width: 100%; background: var(--w); border: 1.5px solid var(--rule);
+      border-radius: 7px; padding: 0.72rem 1rem; font-size: 0.88rem; color: var(--ink);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: var(--fu);
+    }
+    .field input::placeholder, .field textarea::placeholder { color: var(--ink-4); }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(43,76,63,0.1); }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-note { font-family: var(--fm); font-size: 0.62rem; color: var(--ink-4); font-style: italic; margin-top: 0.8rem; line-height: 1.5; }
+    .form-success { display: none; background: var(--accent-s); border: 1px solid rgba(43,76,63,0.2); border-radius: 8px; padding: 1.2rem; margin-top: 1rem; }
+    .form-success p { font-size: 0.85rem; color: var(--accent); line-height: 1.55; }
+    .form-success.show { display: block; }
+
+    .map-section { padding: 0 0 5rem; }
+    .map-box { background: var(--w2); border: 1px solid var(--rule); border-radius: var(--radius); height: 300px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.8rem; }
+    .map-label { font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); }
+    .map-address { font-family: var(--fd); font-size: 1.2rem; font-weight: 300; color: var(--ink); text-align: center; }
+    .map-sub { font-family: var(--fm); font-size: 0.63rem; color: var(--ink-4); font-style: italic; text-align: center; line-height: 1.7; }
+
+    @media (max-width: 900px) {
+      .ph-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .field-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TrustUs <sup>TM</sup></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="casestudies.html">Case Studies</a></li>
+      <li><a href="contact.html" class="nav-cta active">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="ph-grid">
+      <div class="fade-up">
+        <div class="slabel">Contact</div>
+        <h1 class="d-xl">Let us talk<br/>about your<br/><em>security.</em></h1>
+      </div>
+      <div class="fade-up" style="transition-delay:.12s">
+        <p class="b-lg">Every engagement begins with a conversation. Reach out and Rehan will respond personally, because there is no one else to respond. This is a structural feature of the organisation, not a limitation — the distinction being that a limitation implies something went wrong, whereas this was the plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="contact-info fade-up">
+        <div class="info-block">
+          <div class="info-label">Direct Contact</div>
+          <div class="info-value">rehan@trustus.pk</div>
+          <div class="info-note">Rehan reads every email personally. There is no assistant, no filter, no autoresponder beyond the one Gmail applies automatically, and no queue. You are emailing a person. The person is Rehan. He is probably reading this right now, depending on when you sent it.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Phone</div>
+          <div class="info-value">+92 3xx xxxxxxx</div>
+          <div class="info-note">Available during business hours. WhatsApp preferred for genuine emergencies, as calls can be missed whereas WhatsApp messages are seen. "Genuine emergency" is defined by Rehan upon receiving the message, not by the sender's assessment of urgency at the time of sending, which is always higher than the eventual classification.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Office</div>
+          <div class="info-value">Karachi, Pakistan</div>
+          <div class="info-note">Operations are conducted remotely. On-site visits are available by prior arrangement, which means advance notice, a confirmed scope, and a reason that justifies travel. The office is a home office. This is disclosed here, in a note field, in a font size that is technically readable. We consider this disclosed.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Response Time</div>
+          <div class="info-value" style="font-family:var(--fd);font-size:1.1rem;font-style:italic;font-weight:300;line-height:1.5">"I will get back to you. Probably today. Definitely within 24 hours. Except Sundays, where 'within 24 hours' begins Monday morning."</div>
+          <div class="info-note">— Rehan. Chief Executive, Chief Security Officer, Chief Everything Officer, and only point of contact. The org chart has one name on it. The name is Rehan. This is the org chart.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Availability</div>
+          <div class="info-hours">
+            <div class="info-hour-row"><span>Monday – Friday</span><span>09:00 – 18:00 PKT</span></div>
+            <div class="info-hour-row"><span>Saturday</span><span>By arrangement (ask first)</span></div>
+            <div class="info-hour-row"><span>Sunday</span><span>Monitored, rarely, at Rehan's discretion</span></div>
+            <div class="info-hour-row"><span>Public Holidays</span><span>Best effort, meaning genuine effort, not a figure of speech</span></div>
+            <div class="info-hour-row"><span>Active Incident</span><span>Always. Immediately. Without exception.</span></div>
+          </div>
+          <div class="info-note" style="margin-top:0.6rem">Rehan takes security seriously enough that "always available during an incident" is not a marketing claim. It is operational reality. It has been tested. He answered.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">What Happens Next</div>
+          <div class="info-note" style="font-size:0.72rem;line-height:1.7">You submit an enquiry. Rehan reads it. Rehan considers whether he can help (almost always yes). Rehan responds with questions or a proposal, depending on how much information you provided. If you provided a lot of information, expect a proposal. If you provided very little information — for example, "I need cybersecurity" — expect questions. A call is usually scheduled. From there: proposal, agreement, engagement. The whole process takes days, not months. There is no procurement cycle. There is Rehan.</div>
+        </div>
+      </div>
+
+      <div class="fade-up" style="transition-delay:.15s">
+        <div class="contact-form-wrap">
+          <div class="form-title">Send an enquiry</div>
+          <p class="form-sub">Complete the form below. Rehan will review it personally, possibly share it with Claude for drafting assistance, and respond shortly. Your data will be processed in accordance with our Privacy Policy, which you have now been reminded of for the second time today. The $0.003 figure is in section three.</p>
+          <form id="contactForm" onsubmit="submitForm(event)">
+            <div class="field-row">
+              <div class="field">
+                <label>First Name</label>
+                <input type="text" placeholder="Your first name" required/>
+              </div>
+              <div class="field">
+                <label>Last Name</label>
+                <input type="text" placeholder="Your last name" required/>
+              </div>
+            </div>
+            <div class="field">
+              <label>Email Address</label>
+              <input type="email" placeholder="your@company.com" required/>
+            </div>
+            <div class="field">
+              <label>Organisation</label>
+              <input type="text" placeholder="Company or organisation name (Derek may write 'Derek's Shop', which is acceptable)"/>
+            </div>
+            <div class="field">
+              <label>Service of Interest</label>
+              <select>
+                <option value="" disabled selected>Select a service (or honest uncertainty)</option>
+                <option>Penetration Testing</option>
+                <option>SOC Monitoring</option>
+                <option>Incident Response (non-urgent)</option>
+                <option>Incident Response (urgent — please also call)</option>
+                <option>Zero Trust Architecture</option>
+                <option>Compliance Advisory</option>
+                <option>Threat Intelligence</option>
+                <option>General Enquiry</option>
+                <option>I am not sure yet but something is wrong</option>
+                <option>Derek referred me</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Message</label>
+              <textarea placeholder="Tell us about your security requirements, current concerns, recent incidents you'd prefer not to call incidents, or what happened at 2am that led you to this page. All of it is relevant. None of it is shared without consent. (See: Privacy Policy, section 3.)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-dark" style="width:100%;justify-content:center;margin-top:0.5rem">Send Enquiry</button>
+            <p class="form-note">Your enquiry is confidential. We do not share contact details with third parties without your consent, which you provided in the cookie banner, though in the context of enquiry details specifically we mean "without your explicit consent," which you have not yet provided, which means your enquiry details remain private. Derek will not receive this. Probably. Derek is a client, not an administrator, and has no access to incoming enquiries. We have confirmed this with Derek, who was surprised to be asked.</p>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <p>Your enquiry has been received and delivered to Rehan's inbox, which Rehan monitors, and which Rehan is probably looking at right now. There is no ticketing system. There is no queue. There is no triage process beyond Rehan reading the email and deciding what to say. Expect a response within 24 hours. Expect it sooner if the enquiry is interesting, which most enquiries are.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="map-section">
+  <div class="container">
+    <div class="map-box fade-up">
+      <div class="map-label">Office Location</div>
+      <div class="map-address">Karachi, Pakistan</div>
+      <div class="map-sub">Precise address available to confirmed clients upon engagement commencement.<br/>Remote-first operation. On-site visits by prior arrangement with a reason Rehan considers sufficient.<br/>"I want to see your setup" has not yet qualified. "Our compliance requires it" has. "Derek suggested it" is currently under review.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">TrustUs</div><p class="footer-tagline">World-class cybersecurity delivered by one extremely dedicated professional. Claude assists but does not appear on the payroll, the org chart, or this contact page, though he is referenced in three places above.</p></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="casestudies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Penetration Testing</a></li><li><a href="services.html">SOC Monitoring</a></li><li><a href="services.html">Compliance</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2025 TrustUs Cybersecurity. All rights reserved.</div>
+    <div class="footer-dis">Submitting this form does not constitute a contract, a service agreement, or a relationship of any kind beyond "prospective client has expressed interest." Response times are indicative and reflect typical behaviour, not a guaranteed SLA. TrustUs reserves the right to decline engagements that fall outside current capacity, ethical boundaries, or Rehan's assessment of fit, which he applies honestly and without prejudice, except regarding certain industry verticals he has declined to serve, the identities of which are available upon direct enquiry.</div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), {threshold:0.08});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  }
+</script>
+</body>
+</html>

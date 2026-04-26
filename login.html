@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrustUs Cybersecurity — Secure Portal Access</title>
+  <link rel="stylesheet" href="global.css"/>
+  <style>
+
+    /* ══════════════════════════════════════
+       LOGIN PAGE — CORPORATE NIGHTMARE
+    ══════════════════════════════════════ */
+
+    /* Full-page layout */
+    html, body { height: 100%; }
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+
+    /* ── BACKGROUND ── */
+    .auth-bg {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left — navy brand panel */
+    .auth-panel-left {
+      width: 42%;
+      background: var(--accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Grid lines overlay on left panel */
+    .auth-panel-left::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(247,244,238,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(247,244,238,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* Big decorative "PORTAL" stamp */
+    .auth-panel-left::after {
+      content: 'PORTAL';
+      position: absolute;
+      bottom: -1.5rem; right: -2rem;
+      font-family: var(--fg);
+      font-size: 10rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: rgba(247,244,238,0.04);
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .panel-logo {
+      font-family: var(--fg);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--w);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      position: relative; z-index: 1;
+    }
+    .panel-logo-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .panel-mid { position: relative; z-index: 1; }
+
+    .panel-mid .panel-eyebrow {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .panel-mid .panel-eyebrow::before {
+      content: '';
+      display: inline-block; width: 16px; height: 2px;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    .panel-heading {
+      font-family: var(--fg);
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--w);
+      margin-bottom: 1.5rem;
+    }
+    .panel-heading em {
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(247,244,238,0.5);
+    }
+
+    .panel-body {
+      font-family: var(--fm);
+      font-size: 0.75rem;
+      line-height: 1.8;
+      color: rgba(247,244,238,0.45);
+      max-width: 300px;
+    }
+
+    /* Stats column */
+    .panel-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid rgba(247,244,238,0.1);
+      padding-top: 2rem;
+      margin-top: 2rem;
+      position: relative; z-index: 1;
+    }
+    .pstat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(247,244,238,0.07);
+    }
+    .pstat-label {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(247,244,238,0.35);
+    }
+    .pstat-value {
+      font-family: var(--fm);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--w);
+    }
+    .pstat-value.live { color: #7AE0A0; }
+    .pstat-value.warn { color: #F0B429; }
+
+    .panel-footer-note {
+      font-family: var(--fm);
+      font-size: 0.55rem;
+      color: rgba(247,244,238,0.18);
+      line-height: 1.6;
+      position: relative; z-index: 1;
+    }
+
+    /* ── RIGHT — FORM PANEL ── */
+    .auth-panel-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      background: var(--w);
+      position: relative;
+    }
+
+    /* Document corner fold */
+    .auth-panel-right::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 40px 40px 0;
+      border-color: transparent var(--w3) transparent transparent;
+    }
+
+    /* ── AUTH WRAPPER ── */
+    #authWrapper {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Form header */
+    .form-header {
+      margin-bottom: 2rem;
+    }
+    .form-header-label {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 0.5rem;
+    }
+    .form-header h1 {
+      font-family: var(--fg);
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .form-header p {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      color: var(--ink-4);
+      margin-top: 0.4rem;
+      line-height: 1.6;
+    }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--rule);
+    }
+    .tab {
+      font-family: var(--fm);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      padding: 0.6rem 1.2rem 0.7rem;
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab:hover { color: var(--ink); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── FORM SECTIONS ── */
+    .form-section { display: none; }
+    .form-section.active { display: block; }
+
+    /* ── INPUT GROUP ── */
+    .field {
+      margin-bottom: 1.1rem;
+    }
+    .field label {
+      display: block;
+      font-family: var(--fm);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 0.4rem;
+    }
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-wrap input {
+      width: 100%;
+      padding: 0.72rem 1rem;
+      background: var(--w2);
+      border: 1.5px solid var(--rule);
+      border-radius: var(--radius);
+      font-family: var(--fm);
+      font-size: 0.82rem;
+      color: var(--ink);
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+    .input-wrap input::placeholder { color: var(--ink-4); }
+    .input-wrap input:focus {
+      background: var(--w);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(15,37,87,0.08);
+    }
+    .show-pass {
+      position: absolute; right: 0.9rem;
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-4);
+      background: none; border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      padding: 0.2rem 0.4rem;
+      transition: color 0.15s;
+    }
+    .show-pass:hover { color: var(--accent); }
+
+    /* ── PASSWORD STRENGTH ── */
+    .strength-wrap { margin-top: 0.5rem; }
+    .strength-bar {
+      height: 3px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 0.3rem;
+    }
+    #strengthFill {
+      height: 100%;
+      width: 0%;
+      border-radius: 2px;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    #strengthLabel {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      color: var(--ink-4);
+      font-style: italic;
+      min-height: 0.9rem;
+    }
+
+    /* ── MESSAGES ── */
+    .msg {
+      display: none;
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      line-height: 1.55;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      border-left: 3px solid transparent;
+    }
+    .msg-error {
+      background: var(--danger-s);
+      color: var(--danger);
+      border-left-color: var(--danger);
+    }
+    .msg-success {
+      background: #F0FDF4;
+      color: var(--success);
+      border-left-color: var(--success);
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .submit-btn {
+      width: 100%;
+      padding: 0.85rem 1.5rem;
+      background: var(--accent);
+      color: var(--w);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover:not(:disabled) {
+      background: var(--accent-l);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(15,37,87,0.28);
+    }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ── SPINNER ── */
+    .spinner {
+      width: 12px; height: 12px;
+      border: 2px solid rgba(247,244,238,0.3);
+      border-top-color: var(--w);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── DIVIDER ── */
+    .form-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-4);
+      text-transform: uppercase;
+    }
+    .form-divider::before,
+    .form-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── LINKS ── */
+    .form-link {
+      font-family: var(--fm);
+      font-size: 0.66rem;
+      color: var(--accent);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: opacity 0.15s;
+      border: none; background: none; padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .form-link:hover { opacity: 0.7; }
+
+    .form-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .form-footer-row span {
+      font-family: var(--fm);
+      font-size: 0.66rem;
+      color: var(--ink-4);
+    }
+
+    /* ── OTP BOX ── */
+    #otpSentBox {
+      background: var(--accent-s);
+      border: 1px solid rgba(15,37,87,0.15);
+      border-radius: var(--radius);
+      padding: 1rem;
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      line-height: 1.7;
+      color: var(--ink-3);
+      margin-bottom: 1rem;
+    }
+    .otp-code {
+      display: block;
+      font-family: var(--fm);
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin: 0.5rem 0 0.3rem;
+    }
+    .otp-note {
+      display: block;
+      font-size: 0.6rem;
+      color: var(--ink-4);
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+
+    /* ── FORGOT PASSWORD REVEAL ── */
+    #forgotReveal {
+      display: none;
+      background: var(--danger-s);
+      border: 1px solid rgba(185,28,28,0.2);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      line-height: 1.7;
+      color: var(--danger);
+      margin-top: 1rem;
+    }
+    .plain-pw {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      margin: 0.4rem 0 0.2rem;
+      word-break: break-all;
+    }
+    .reveal-note {
+      display: block;
+      font-size: 0.6rem;
+      color: var(--ink-4);
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
+
+    /* ── SUCCESS SCREEN ── */
+    #successScreen {
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .success-icon {
+      width: 52px; height: 52px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-size: 1.3rem;
+    }
+    #successScreen h2 {
+      font-family: var(--fg);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    #successScreen p {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      color: var(--ink-4);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── SOC DASHBOARD ── */
+    #socWrapper {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+      background: var(--ink);
+      color: var(--w);
+      font-family: var(--fm);
+    }
+
+    /* SOC nav bar */
+    .soc-nav {
+      background: var(--ink-2);
+      border-bottom: 2px solid var(--gold);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .soc-nav-left {
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .soc-logo {
+      font-family: var(--fg);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--w);
+    }
+    .soc-badge {
+      font-family: var(--fm);
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 0.18rem 0.55rem;
+      border-radius: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .soc-nav-right {
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    .soc-user-chip {
+      font-size: 0.65rem;
+      color: rgba(247,244,238,0.5);
+      letter-spacing: 0.06em;
+    }
+    .soc-user-chip span {
+      color: var(--w);
+      font-weight: 600;
+    }
+    .soc-status {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: rgba(247,244,238,0.45);
+      text-transform: uppercase;
+    }
+    #statusDot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #4ADE80;
+      box-shadow: 0 0 0 3px rgba(74,222,128,0.15);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    #statusDot.danger {
+      background: #F87171;
+      box-shadow: 0 0 0 5px rgba(248,113,113,0.2);
+    }
+    #statusLabel { transition: color 0.3s; }
+
+    .logout-btn {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(247,244,238,0.07);
+      color: rgba(247,244,238,0.55);
+      border: 1px solid rgba(247,244,238,0.12);
+      padding: 0.35rem 0.85rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .logout-btn:hover { background: rgba(247,244,238,0.12); color: var(--w); }
+
+    /* SOC body */
+    .soc-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1px;
+      background: rgba(247,244,238,0.06);
+      padding: 1px;
+    }
+
+    .soc-panel {
+      background: var(--ink);
+      padding: 1.5rem;
+    }
+    .soc-panel-label {
+      font-size: 0.56rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(247,244,238,0.25);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .soc-panel-label::before {
+      content: '';
+      display: inline-block; width: 12px; height: 1px;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* ── THREAT COUNTER ── */
+    .soc-panel-big-num {
+      font-family: var(--fg);
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--w);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .soc-panel-sub {
+      font-size: 0.6rem;
+      color: rgba(247,244,238,0.3);
+      font-style: italic;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── EARNED ── */
+    .earned-num {
+      font-family: var(--fg);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .earned-num::before { content: '$'; font-size: 1.2rem; vertical-align: super; margin-right: 0.1rem; }
+
+    /* ── MY DATA PANEL (span 2 rows) ── */
+    .soc-panel-data {
+      grid-row: 1 / 3;
+    }
+    .mydata-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(247,244,238,0.06);
+      gap: 1rem;
+    }
+    .mydata-row:last-child { border-bottom: none; }
+    .mydata-key {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(247,244,238,0.3);
+      flex-shrink: 0;
+    }
+    .mydata-value {
+      font-size: 0.75rem;
+      color: rgba(247,244,238,0.75);
+      text-align: right;
+      word-break: break-all;
+    }
+    .mydata-value.exposed {
+      color: #F0B429;
+    }
+
+    /* ── THREAT FEED ── */
+    .soc-panel-feed {
+      grid-column: 2 / 4;
+    }
+    #threatFeed {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .threat-item {
+      display: flex;
+      gap: 1rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(247,244,238,0.05);
+      animation: fadeInRow 0.4s ease;
+    }
+    @keyframes fadeInRow {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .threat-time {
+      font-size: 0.6rem;
+      color: rgba(247,244,238,0.25);
+      flex-shrink: 0;
+      padding-top: 0.05rem;
+      letter-spacing: 0.04em;
+    }
+    .threat-msg {
+      font-size: 0.7rem;
+      color: rgba(247,244,238,0.65);
+      line-height: 1.5;
+    }
+
+    /* ── ATTACK MAP ── */
+    .soc-panel-map {
+      grid-column: 2 / 4;
+    }
+    .map-wrap {
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .map-wrap svg.worldmap {
+      width: 100%;
+      display: block;
+    }
+    .attack-line {
+      stroke: #F87171;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+    }
+    .target-dot {
+      fill: var(--gold);
+      filter: drop-shadow(0 0 4px var(--gold));
+    }
+    .map-note {
+      font-size: 0.6rem;
+      color: rgba(247,244,238,0.2);
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    /* ── SOC FOOTER ── */
+    .soc-footer {
+      background: var(--ink-2);
+      border-top: 1px solid rgba(247,244,238,0.06);
+      padding: 0.6rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .soc-footer-text {
+      font-size: 0.57rem;
+      color: rgba(247,244,238,0.2);
+      letter-spacing: 0.06em;
+    }
+    .soc-footer-live {
+      font-size: 0.57rem;
+      color: #4ADE80;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .live-pulse {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #4ADE80;
+      animation: livePulse 1.8s ease-in-out infinite;
+    }
+    @keyframes livePulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    /* ── COOKIE BANNER ── */
+    #cookieOverlay {
+      position: fixed; bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      width: 90%; max-width: 560px;
+      background: var(--ink-2);
+      border: 1px solid rgba(247,244,238,0.1);
+      border-top: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      box-shadow: var(--sh-lg);
+    }
+    .cookie-body {
+      flex: 1;
+      font-family: var(--fm);
+      font-size: 0.66rem;
+      line-height: 1.65;
+      color: rgba(247,244,238,0.55);
+    }
+    .cookie-body strong {
+      color: var(--w);
+      font-weight: 600;
+    }
+    .cookie-actions {
+      display: flex; flex-direction: column; gap: 0.5rem; flex-shrink: 0;
+    }
+    .cookie-accept, .cookie-decline {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.45rem 1rem;
+      border-radius: 2px;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+    .cookie-accept { background: var(--gold); color: var(--ink); }
+    .cookie-accept:hover { background: #C09A45; }
+    .cookie-decline { background: rgba(247,244,238,0.08); color: rgba(247,244,238,0.5); }
+    .cookie-decline:hover { background: rgba(247,244,238,0.13); color: var(--w); }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .auth-panel-left { display: none; }
+      .soc-body { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .soc-panel-data, .soc-panel-map, .soc-panel-feed { grid-column: 1; grid-row: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     AUTH WRAPPER
+══════════════════════════════════════ -->
+<div class="auth-bg" id="authWrapper">
+
+  <!-- LEFT BRAND PANEL -->
+  <div class="auth-panel-left">
+
+    <div class="panel-logo">
+      <div class="panel-logo-dot"></div>
+      TrustUs Cybersecurity
+    </div>
+
+    <div class="panel-mid">
+      <div class="panel-eyebrow">Secure Client Portal</div>
+      <h2 class="panel-heading">
+        Your data<br/>is <em>extremely</em><br/>safe with us.
+      </h2>
+      <p class="panel-body">
+        Access your dedicated security operations centre below.<br/>
+        We protect your assets around the clock.<br/>
+        Business hours may apply during public holidays.
+      </p>
+
+      <div class="panel-stats">
+        <div class="pstat">
+          <span class="pstat-label">Threats Blocked Today</span>
+          <span class="pstat-value live" id="panelThreats">1,247,832</span>
+        </div>
+        <div class="pstat">
+          <span class="pstat-label">Systems Status</span>
+          <span class="pstat-value live">Operational</span>
+        </div>
+        <div class="pstat">
+          <span class="pstat-label">Active Analysts</span>
+          <span class="pstat-value">1</span>
+        </div>
+        <div class="pstat">
+          <span class="pstat-label">AI Assistants</span>
+          <span class="pstat-value warn">1 (Not on Payroll)</span>
+        </div>
+        <div class="pstat">
+          <span class="pstat-label">Clients Currently Monitored</span>
+          <span class="pstat-value">Selective</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="panel-footer-note">
+      TrustUs is registered in a jurisdiction we prefer not to specify.<br/>
+      Rehan is not liable for outcomes beyond his reasonable control,<br/>which he defines broadly.
+    </p>
+
+  </div>
+
+  <!-- RIGHT FORM PANEL -->
+  <div class="auth-panel-right">
+    <div id="authWrapper-inner" style="width:100%;max-width:420px">
+
+      <div class="form-header">
+        <div class="form-header-label">TrustUs Portal — Authenticated Access</div>
+        <h1>Welcome Back.</h1>
+        <p>Or sign up. We will need your personal data either way.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" id="tabLogin"  onclick="switchTab('login')">Sign In</button>
+        <button class="tab"        id="tabSignup" onclick="switchTab('signup')">Create Account</button>
+      </div>
+
+      <!-- ── LOGIN FORM ── -->
+      <div class="form-section active" id="loginForm">
+        <div class="msg msg-error" id="loginError"></div>
+        <div class="msg msg-success" id="loginSuccess"></div>
+
+        <div class="field">
+          <label for="loginEmail">Email Address</label>
+          <div class="input-wrap">
+            <input type="email" id="loginEmail" placeholder="you@company.com" autocomplete="email"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password"/>
+            <button class="show-pass" onclick="togglePass('loginPassword',this)">show</button>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="loginBtn" data-label="Sign In"
+                onclick="handleLogin(event)">
+          Sign In
+        </button>
+
+        <div class="form-footer-row">
+          <span>No account? <button class="form-link" onclick="switchTab('signup')">Create one</button></span>
+          <button class="form-link" onclick="switchTab('forgot')">Forgot password?</button>
+        </div>
+      </div>
+
+      <!-- ── SIGNUP FORM ── -->
+      <div class="form-section" id="signupForm">
+        <div class="msg msg-error" id="signupError"></div>
+
+        <div class="field">
+          <label for="regName">Full Name</label>
+          <div class="input-wrap">
+            <input type="text" id="regName" placeholder="Your Name" autocomplete="name"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="regEmail">Email Address</label>
+          <div class="input-wrap">
+            <input type="email" id="regEmail" placeholder="you@company.com" autocomplete="email"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="regPhone">Phone Number</label>
+          <div class="input-wrap">
+            <input type="tel" id="regPhone" placeholder="+92 300 0000000" autocomplete="tel"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="regPassword">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="regPassword" placeholder="Min. 6 characters" autocomplete="new-password"/>
+            <button class="show-pass" onclick="togglePass('regPassword',this)">show</button>
+          </div>
+          <div class="strength-wrap">
+            <div class="strength-bar"><div id="strengthFill"></div></div>
+            <div id="strengthLabel"></div>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="signupBtn" data-label="Create Account"
+                onclick="handleSignup(event)">
+          Create Account
+        </button>
+
+        <div class="form-footer-row">
+          <span>Already registered? <button class="form-link" onclick="switchTab('login')">Sign in</button></span>
+        </div>
+      </div>
+
+      <!-- ── OTP FORM ── -->
+      <div class="form-section" id="otpForm">
+        <div id="otpSentBox"></div>
+        <div class="msg msg-error"   id="otpError"></div>
+        <div class="msg msg-success" id="otpSuccess"></div>
+
+        <div class="field">
+          <label for="otpInput">Enter OTP</label>
+          <div class="input-wrap">
+            <input type="text" id="otpInput" placeholder="_ _ _ _ _ _"
+                   maxlength="6" autocomplete="one-time-code"
+                   style="letter-spacing:0.3em;font-size:1rem;text-align:center"/>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="otpVerifyBtn" data-label="Verify"
+                onclick="verifyOTP()">
+          Verify OTP
+        </button>
+
+        <div class="form-footer-row">
+          <span>Didn't receive it? <button class="form-link" onclick="resendOTP()">Resend</button></span>
+          <button class="form-link" onclick="switchTab('signup')">← Back</button>
+        </div>
+      </div>
+
+      <!-- ── FORGOT PASSWORD ── -->
+      <div class="form-section" id="forgotForm">
+        <div class="msg msg-error" id="forgotError"></div>
+
+        <div class="field">
+          <label for="forgotEmail">Your Email Address</label>
+          <div class="input-wrap">
+            <input type="email" id="forgotEmail" placeholder="you@company.com"/>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="forgotBtn" data-label="Retrieve My Password"
+                onclick="handleForgot()">
+          Retrieve My Password
+        </button>
+
+        <div id="forgotReveal"></div>
+
+        <div class="form-footer-row" style="margin-top:1rem">
+          <button class="form-link" onclick="switchTab('login')">← Back to Sign In</button>
+        </div>
+      </div>
+
+      <!-- ── SUCCESS SCREEN ── -->
+      <div class="form-section" id="successScreen">
+        <div class="success-icon">✓</div>
+        <h2>Account Created.</h2>
+        <p>
+          Welcome to TrustUs. Your data has been securely stored.<br/>
+          "Securely" is a relative term. You agreed to our terms.<br/>
+          Please proceed to sign in.
+        </p>
+        <button class="submit-btn" onclick="switchTab('login')">
+          Proceed to Sign In
+        </button>
+      </div>
+
+    </div><!-- /authWrapper-inner -->
+  </div><!-- /auth-panel-right -->
+
+</div><!-- /auth-bg -->
+
+
+<!-- ══════════════════════════════════════
+     SOC DASHBOARD
+══════════════════════════════════════ -->
+<div id="socWrapper">
+
+  <!-- SOC Nav -->
+  <nav class="soc-nav">
+    <div class="soc-nav-left">
+      <div class="soc-logo">TrustUs</div>
+      <div class="soc-badge">SOC Dashboard</div>
+    </div>
+    <div class="soc-nav-right">
+      <div class="soc-status">
+        <div id="statusDot"></div>
+        <span id="statusLabel">All Systems Secure</span>
+      </div>
+      <div class="soc-user-chip">Logged in as <span id="socUserName"></span></div>
+      <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- SOC Body Grid -->
+  <div class="soc-body">
+
+    <!-- MY DATA -->
+    <div class="soc-panel soc-panel-data">
+      <div class="soc-panel-label">Your Personal Data — Actively Managed</div>
+      <div id="myDataList"></div>
+    </div>
+
+    <!-- THREATS BLOCKED -->
+    <div class="soc-panel">
+      <div class="soc-panel-label">Threats Blocked — Live</div>
+      <div class="soc-panel-big-num" id="threatCount">1,247,391</div>
+      <div class="soc-panel-sub">Today. Roughly. Give or take a few hundred.</div>
+    </div>
+
+    <!-- REVENUE EARNED -->
+    <div class="soc-panel">
+      <div class="soc-panel-label">Revenue from Your Data — Lifetime</div>
+      <div class="earned-num" id="totalEarned">2.541</div>
+      <div class="soc-panel-sub">USD. Shared equitably. Between Derek and Palantir.</div>
+    </div>
+
+    <!-- THREAT FEED -->
+    <div class="soc-panel soc-panel-feed">
+      <div class="soc-panel-label">Live Threat Intelligence Feed</div>
+      <div id="threatFeed"></div>
+    </div>
+
+    <!-- ATTACK MAP -->
+    <div class="soc-panel soc-panel-map">
+      <div class="soc-panel-label">Global Attack Map — Real-Time</div>
+      <div class="map-wrap">
+        <!-- Simplified world map SVG -->
+        <svg class="worldmap" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="700" height="380" fill="#0D0F1A"/>
+          <!-- Ocean tint -->
+          <rect width="700" height="380" fill="rgba(15,37,87,0.25)"/>
+          <!-- Continents — simplified shapes -->
+          <!-- North America -->
+          <path d="M60 80 L150 70 L190 90 L200 140 L180 180 L130 210 L80 200 L50 170 L40 120 Z" fill="rgba(247,244,238,0.07)" stroke="rgba(247,244,238,0.12)" stroke-width="0.8"/>
+          <!-- South America -->
+          <path d="M140 230 L190 220 L210 250 L210 310 L180 340 L145 330 L130 290 L125 250 Z" fill="rgba(247,244,238,0.07)" stroke="rgba(247,244,238,0.12)" stroke-width="0.8"/>
+          <!-- Europe -->
+          <path d="M310 70 L380 65 L400 90 L390 115 L360 120 L330 110 L305 95 Z" fill="rgba(247,244,238,0.07)" stroke="rgba(247,244,238,0.12)" stroke-width="0.8"/>
+          <!-- Africa -->
+          <path d="M310 130 L380 125 L400 160 L395 230 L360 270 L325 265 L305 220 L300 160 Z" fill="rgba(247,244,238,0.07)" stroke="rgba(247,244,238,0.12)" stroke-width="0.8"/>
+          <!-- Russia / N Asia -->
+          <path d="M400 50 L580 45 L600 75 L560 100 L480 105 L420 95 L395 75 Z" fill="rgba(247,244,238,0.07)" stroke="rgba(247,244,238,0.12)" stroke-width="0.8"/>
+          <!-- Middle East / S Asia -->
+          <path d="M400 115 L500 110 L540 135 L530 165 L470 170 L420 155 L395 135 Z" fill="rgba(247,244,238,0.07)" stroke="rgba(247,244,238,0.12)" stroke-width="0.8"/>
+          <!-- East Asia -->
+          <path d="M530 80 L630 75 L650 110 L625 145 L575 150 L535 130 L520 105 Z" fill="rgba(247,244,238,0.07)" stroke="rgba(247,244,238,0.12)" stroke-width="0.8"/>
+          <!-- Australia -->
+          <path d="M560 240 L640 235 L660 270 L645 310 L595 315 L560 290 L545 265 Z" fill="rgba(247,244,238,0.07)" stroke="rgba(247,244,238,0.12)" stroke-width="0.8"/>
+          <!-- Attack lines group -->
+          <g id="attackLines"></g>
+          <!-- Target (Pakistan / Rehan HQ) -->
+          <circle cx="490" cy="148" r="5" class="target-dot"/>
+          <circle cx="490" cy="148" r="10" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.4">
+            <animate attributeName="r" values="8;16;8" dur="2.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.5;0;0.5" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Data counter overlay -->
+          <text x="16" y="370" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(247,244,238,0.18)" letter-spacing="0.06em">
+            DATA PACKETS INTERCEPTED TODAY: <tspan id="dataCount" fill="rgba(247,244,238,0.4)">847</tspan>
+          </text>
+        </svg>
+      </div>
+      <div class="map-note">Attack origins are approximate. Target is exact. Do not be alarmed.</div>
+    </div>
+
+  </div><!-- /soc-body -->
+
+  <!-- SOC Footer -->
+  <div class="soc-footer">
+    <span class="soc-footer-text">TrustUs SOC v2.4.1 — Rehan, Operator — Claude, Unpaid Contributor</span>
+    <span class="soc-footer-live"><div class="live-pulse"></div>Live Feed Active</span>
+  </div>
+
+</div><!-- /socWrapper -->
+
+
+<!-- ══════════════════════════════════════
+     COOKIE BANNER
+══════════════════════════════════════ -->
+<div id="cookieOverlay">
+  <div class="cookie-body">
+    <strong>This site uses cookies.</strong><br/>
+    And also your location, device fingerprint, contact list, browsing history,
+    and ambient microphone data. The cookie is largely ceremonial at this point.
+    By clicking Accept, you consent to all of the above and confirm you have not
+    read this notice carefully.
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-accept" onclick="closeCookies()">Accept All</button>
+    <button class="cookie-decline" onclick="closeCookies()">Decline</button>
+  </div>
+</div>
+
+
+<!-- ── Ticker on panel left (panel stat counter) ── -->
+<script>
+  // Animate the panel threat counter
+  let panelN = 1247832;
+  setInterval(() => {
+    panelN += Math.floor(Math.random() * 4) + 1;
+    const el = document.getElementById('panelThreats');
+    if (el) el.textContent = panelN.toLocaleString();
+  }, 1400);
+</script>
+
+<script src="app.js"></script>
+</body>
+</html>
